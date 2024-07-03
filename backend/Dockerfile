@@ -8,13 +8,13 @@ RUN apt-get update && apt-get install -y gcc g++ musl-dev libpq-dev
 WORKDIR /app
 
 # 必要なファイルをコピー
-COPY requirements.txt requirements.txt
+COPY ./backend/requirements.txt requirements.txt
 
 # 依存関係をインストール
 RUN pip install -r requirements.txt
 
 # アプリケーションのソースコードをコピー
-COPY . .
+COPY ./backend .
 
 # Flaskアプリケーションを起動
 CMD ["python", "run.py"]

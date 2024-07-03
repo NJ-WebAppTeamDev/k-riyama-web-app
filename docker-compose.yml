@@ -33,13 +33,13 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     environment:
-      DATABASE_URI: "mysql://${DB_USERNAME}:${DB_PASSWORD}@db:3306/${DB_DATABASE}"
+      DATABASE_URI: "mysql+mysqlconnector://${DB_USER}:${DB_PASSWORD}@db:3306/${DB_DATABASE}"
     ports:
       - "5000:5000"
     volumes:
       - ./backend:/app
     depends_on:
-      - db
+      - mysql
     networks:
       - sail
 
@@ -49,7 +49,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
       MYSQL_DATABASE: "${DB_DATABASE}"
-      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_USER: "${DB_USER}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
     ports:
       - "3306:3306"
