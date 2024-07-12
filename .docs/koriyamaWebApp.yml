@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: koriyamaWebAppV1
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: '{{URL}}'
+paths:
+  /api/v1/blogs:
+    get:
+      tags:
+        - user
+      summary: blogs
+      description: blogs
+      operationId: blogs
+      responses:
+        '200':
+          description: blogs
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: string
+                          example: this is a test1
+                        id:
+                          type: number
+                          example: 1
+                        image:
+                          type: string
+                          example: /img/test1
+                        title:
+                          type: string
+                          example: test1
+                    example:
+                      - description: this is a test1
+                        id: 1
+                        image: /img/test1
+                        title: test1
+                      - description: this is a test2
+                        id: 2
+                        image: /img/test2
+                        title: test2
+              examples:
+                blogs:
+                  value:
+                    data:
+                      - description: this is a test1
+                        id: 1
+                        image: /img/test1
+                        title: test1
+                      - description: this is a test2
+                        id: 2
+                        image: /img/test2
+                        title: test2
+      security:
+        - {}
+  /api/v1/blogs/{blogId}:
+    get:
+      tags:
+        - user
+      summary: blogsById
+      description: blogsById
+      operationId: blogsbyid
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+    parameters:
+      - name: blogId
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/v1/stampboard:
+    get:
+      tags:
+        - user
+      summary: stampboard
+      description: stampboard
+      operationId: stampboard
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+  /api/v1/admin/blogs:
+    post:
+      tags:
+        - admin
+      summary: blogs
+      description: blogs
+      operationId: blogs1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: this is a test3
+                image:
+                  type: string
+                  example: /img/test3
+                title:
+                  type: string
+                  example: test3
+            examples:
+              blogs:
+                value:
+                  description: this is a test3
+                  image: /img/test3
+                  title: test3
+      responses:
+        '200':
+          description: blogs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      description:
+                        type: string
+                        example: this is a test3
+                      id:
+                        type: number
+                        example: 3
+                      image:
+                        type: string
+                        example: /img/test3
+                      title:
+                        type: string
+                        example: test3
+              examples:
+                blogs:
+                  value:
+                    data:
+                      description: this is a test3
+                      id: 3
+                      image: /img/test3
+                      title: test3
+      security:
+        - basicAuth: []
+  /api/v1/admin/blogs/{blogId}:
+    put:
+      tags:
+        - admin
+      summary: blogs
+      description: blogs
+      operationId: blogs2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: test-3
+            examples:
+              blogs:
+                value:
+                  title: test-3
+      responses:
+        '200':
+          description: blogs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      desctiprion:
+                        type: string
+                        example: this is a test3
+                      id:
+                        type: number
+                        example: 3
+                      image:
+                        type: string
+                        example: /img/test3
+                      title:
+                        type: string
+                        example: test-3
+              examples:
+                blogs:
+                  value:
+                    data:
+                      desctiprion: this is a test3
+                      id: 3
+                      image: /img/test3
+                      title: test-3
+      security:
+        - basicAuth: []
+    delete:
+      tags:
+        - admin
+      summary: blogs
+      description: blogs
+      operationId: blogs3
+      responses:
+        '204':
+          description: blogs
+          content:
+            text/plain:
+              examples:
+                blogs:
+                  value: ''
+      security:
+        - basicAuth: []
+    parameters:
+      - name: blogId
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: user
+  - name: admin
