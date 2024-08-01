@@ -4,7 +4,7 @@ function Footer() {
   return (
   <footer>
     <div className={style.test}>
-      <p className={style.test}>&copy; 2024 Joken</p>
+      <p className={style.character}>&copy; 2024 Joken</p>
     </div>
   </footer>
   );
