@@ -1,8 +1,5 @@
 # ベースイメージを指定
-FROM python:3.10-slim
-
-# 必要なパッケージをインストール
-RUN apt-get update && apt-get install -y gcc g++ musl-dev libpq-dev
+FROM python:3.8-slim
 
 # ワーキングディレクトリを指定
 WORKDIR /app

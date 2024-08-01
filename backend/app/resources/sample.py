@@ -1,6 +1,5 @@
 # TODO 後に削除するファイルです。サンプル用に作成しました。このファイルは編集しないでください。
 from flask_restful import Resource, reqparse
-from app.extensions import db
 
 class SampleResource(Resource):
     def get(self):
