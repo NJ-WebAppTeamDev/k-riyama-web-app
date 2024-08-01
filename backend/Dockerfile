@@ -1,5 +1,5 @@
 # ベースイメージを指定
-FROM python:3.8-slim
+FROM python:3.10-slim
 
 # ワーキングディレクトリを指定
 WORKDIR /app
