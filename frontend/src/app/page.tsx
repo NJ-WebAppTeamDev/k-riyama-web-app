@@ -1,3 +1,3 @@
-const Home = () => <>HOME画面</>;
+const Home = () => <>HOME画面!</>;
 
 export default Home;
