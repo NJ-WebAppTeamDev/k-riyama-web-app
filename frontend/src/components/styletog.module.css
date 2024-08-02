@@ -1,0 +1,15 @@
+.line-1 {
+  transform: translate(0, -10px);
+}
+
+.line-2 {
+  transform: translate(0, 10px);
+}
+
+.toggleButon[aria-expanded="true"] > .line-1 {
+  transform: translate(0, 0) rotate(-45deg);
+}
+
+.toggleButon[aria-expanded="true"] > .line-2 {
+  transform: translate(0, 0) rotate(45deg);
+}

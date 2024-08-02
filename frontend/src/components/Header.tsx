@@ -1,13 +1,13 @@
-import style from "./Footer.module.css";
+import style from "./Header.module.css";
 
-function Footer() {
+function Header() {
   return (
-  <footer>
+  <header>
     <div className={style.test}>
-      <p className={style.test}>&copy; 2024 Joken</p>
+      <p className={style.character}>LOGO</p>
     </div>
-  </footer>
+  </header>
   );
 }
 
-export default Footer;
+export default Header;
