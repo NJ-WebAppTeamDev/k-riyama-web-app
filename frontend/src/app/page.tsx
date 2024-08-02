@@ -1,9 +1,11 @@
+import Footer from "../components/Footer";
 import style from "./page.module.css";
 import Image from "next/image";
 function Home() {
   return (
     <div className={style.home}>
       <header>header</header>
+      <div className={style.emptybox}></div>
       <div className={style.tutorial}>
         <h2>アプリの使い方</h2>
         <div className={style.tutorial_item}>
@@ -28,7 +30,7 @@ function Home() {
       <div className={style.stump}>
         <h2>スタンプボード</h2>
       </div>
-      <footer>footer</footer>
+      <Footer />
     </div>
   );
 }
