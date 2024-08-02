@@ -170,6 +170,8 @@ paths:
                 file:
                   type: string
                   format: binary
+                blog_id:
+                  type: string
       responses:
         '200':
           description: ''
