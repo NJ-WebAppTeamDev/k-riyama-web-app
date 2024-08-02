@@ -1,7 +1,10 @@
 .test {
   background-color: #D9D9D9;
+  /*position: absolute;*/
   height: 158px;
-  width: 390px;
+  width: 100%;
+  justify-content: flex-start;
+  flex-direction: column-reverse;
 }
 
 .character {
@@ -10,5 +13,6 @@
   font-weight: 400;
   font-size: 18px;
   text-align: center;
-  margin: 102px 0px 0px 56px;
+  padding: 102px 56px 0px 56px;
 }
+  
