@@ -1,7 +1,7 @@
 /* src/components/Navbar.module.css */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end; /* 右寄せにするために変更 */
   align-items: center;
   padding: 15px;
   background-color: #333;
