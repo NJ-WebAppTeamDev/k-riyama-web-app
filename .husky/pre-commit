@@ -1,0 +1,9 @@
+cd backend
+
+# blackの存在を確認し、存在する場合にのみ実行
+if command -v black >/dev/null 2>&1; then
+  echo "Running black..."
+  black .
+else
+  echo "black is not installed. Skipping..."
+fi

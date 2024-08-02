@@ -4,18 +4,18 @@ info:
   version: 1.0.0
   contact: {}
 servers:
-  - url: '{{URL}}'
+  - url: 'http://localhost:5000'
 paths:
   /api/v1/blogs:
     get:
       tags:
         - user
-      summary: blogs
-      description: blogs
-      operationId: blogs
+      summary: ブログ一覧の取得
+      description: ブログを全件取得する。
+      operationId: get_blogs
       responses:
         '200':
-          description: blogs
+          description: ''
           headers:
             Access-Control-Allow-Origin:
               schema:
@@ -28,58 +28,23 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        description:
-                          type: string
-                          example: this is a test1
-                        id:
-                          type: number
-                          example: 1
-                        image:
-                          type: string
-                          example: /img/test1
-                        title:
-                          type: string
-                          example: test1
-                    example:
-                      - description: this is a test1
-                        id: 1
-                        image: /img/test1
-                        title: test1
-                      - description: this is a test2
-                        id: 2
-                        image: /img/test2
-                        title: test2
-              examples:
-                blogs:
-                  value:
-                    data:
-                      - description: this is a test1
-                        id: 1
-                        image: /img/test1
-                        title: test1
-                      - description: this is a test2
-                        id: 2
-                        image: /img/test2
-                        title: test2
+                $ref: '#/components/schemas/Blogs'
       security:
         - {}
   /api/v1/blogs/{blogId}:
     get:
       tags:
         - user
-      summary: blogsById
-      description: blogsById
-      operationId: blogsbyid
+      summary: ブログの取得
+      description: ブログIDで指定されたブログを取得する。
+      operationId: get_blogs_by_id
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
       security:
         - {}
     parameters:
@@ -87,147 +52,98 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: integer
   /api/v1/stampboard:
-    get:
+    post:
       tags:
         - user
-      summary: stampboard
-      description: stampboard
-      operationId: stampboard
+      summary: スタンプボードの取得
+      description: スタンプボードのブログ記事を取得する
+      operationId: get_stampboard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                exclude_ids:
+                  type: array
+                  items:
+                    type: integer
+            examples:
+              exclude_ids:
+                value:
+                  {"exclude_ids": [1, 2, 3]}
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stampboard'
       security:
         - {}
   /api/v1/admin/blogs:
     post:
       tags:
         - admin
-      summary: blogs
-      description: blogs
-      operationId: blogs1
+      summary: ブログの作成
+      description: ブログを作成する
+      operationId: post_blog
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                description:
-                  type: string
-                  example: this is a test3
-                image:
-                  type: string
-                  example: /img/test3
-                title:
-                  type: string
-                  example: test3
-            examples:
-              blogs:
-                value:
-                  description: this is a test3
-                  image: /img/test3
-                  title: test3
+              $ref: '#/components/schemas/Blog'
       responses:
         '200':
-          description: blogs
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   data:
-                    type: object
-                    properties:
-                      description:
-                        type: string
-                        example: this is a test3
-                      id:
-                        type: number
-                        example: 3
-                      image:
-                        type: string
-                        example: /img/test3
-                      title:
-                        type: string
-                        example: test3
-              examples:
-                blogs:
-                  value:
-                    data:
-                      description: this is a test3
-                      id: 3
-                      image: /img/test3
-                      title: test3
+                    $ref: '#/components/schemas/Blog'
       security:
         - basicAuth: []
   /api/v1/admin/blogs/{blogId}:
     put:
       tags:
         - admin
-      summary: blogs
-      description: blogs
-      operationId: blogs2
+      summary: ブログの編集
+      description: ブログの編集を行う
+      operationId: put_blog
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  example: test-3
-            examples:
-              blogs:
-                value:
-                  title: test-3
+              $ref: '#/components/schemas/Blog'
       responses:
         '200':
-          description: blogs
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   data:
-                    type: object
-                    properties:
-                      desctiprion:
-                        type: string
-                        example: this is a test3
-                      id:
-                        type: number
-                        example: 3
-                      image:
-                        type: string
-                        example: /img/test3
-                      title:
-                        type: string
-                        example: test-3
-              examples:
-                blogs:
-                  value:
-                    data:
-                      desctiprion: this is a test3
-                      id: 3
-                      image: /img/test3
-                      title: test-3
+                    $ref: '#/components/schemas/Blog'
       security:
         - basicAuth: []
     delete:
       tags:
         - admin
-      summary: blogs
-      description: blogs
-      operationId: blogs3
+      summary: ブログの削除
+      description: ブログの削除を行う
+      operationId: delete_blog
       responses:
         '204':
-          description: blogs
+          description: ''
           content:
-            text/plain:
-              examples:
-                blogs:
-                  value: ''
+            application/json:
+              schema:
+                type: object
       security:
         - basicAuth: []
     parameters:
@@ -235,12 +151,89 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: integer
 components:
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
+  schemas:
+    StudentVoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        academic_year:
+          type: string
+          example: "2024"
+        description:
+          type: string
+          example: "学生の声"
+    Blog:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nick_name:
+          type: string
+          example: "スタンプボード上に表示される名称"
+        place_name:
+          type: string
+          example: "ブログタイトル"
+        points:
+          type: array
+          items:
+            type: string
+            example: "おすすめポイント"
+        more_description:
+          type: string
+          example: "もっと詳しく"
+        student_voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudentVoice'
+        address:
+          type: string
+          example: "住所"
+        images:
+          type: array
+          items:
+            type: string
+          example: ["/img/a.jpg", "/img/b.jpg"]
+        meta_description:
+          type: string
+          example: "metaタグのdescription"
+        meta_og_description:
+          type: string
+          example: "metaタグのog:description"
+        meta_keywords:
+          type: string
+          example: "metaタグのkeywords"
+    Blogs:
+      type: object
+      properties:
+        blogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Blog'
+    StampboardItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nick_name:
+          type: string
+          example: "スタンプ上の名称"
+    Stampboard:
+      type: object
+      properties:
+        stampboard:
+          type: array
+          items:
+            $ref: '#/components/schemas/StampboardItem'
 tags:
   - name: user
   - name: admin

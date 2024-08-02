@@ -33,7 +33,7 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     environment:
-      DATABASE_URI: "mysql+mysqlconnector://${DB_USER}:${DB_PASSWORD}@db:3306/${DB_DATABASE}"
+      DATABASE_URI: "mysql+pymysql://${DB_USER}:${DB_PASSWORD}@mysql:3306/${DB_DATABASE}"
     ports:
       - "5000:5000"
     volumes:
