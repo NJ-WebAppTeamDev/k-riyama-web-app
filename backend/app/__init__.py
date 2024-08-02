@@ -14,8 +14,10 @@ def create_app():
     # Flask-RESTfulのAPI初期化
     with app.app_context():
         from app.resources import api_bp
+        from app.resources.admin import admin_api_bp
 
         app.register_blueprint(api_bp, url_prefix="/api/v1")
+        app.register_blueprint(admin_api_bp, url_prefix="/api/v1/admin")
 
         db.create_all()
 
