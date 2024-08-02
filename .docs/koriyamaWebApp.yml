@@ -152,6 +152,33 @@ paths:
         required: true
         schema:
           type: integer
+  /api/v1/admin/upload/image:
+    post:
+      tags:
+        - admin
+      summary: 画像のアップロード
+      description: 画像のアップロードを行う
+      operationId: upload_image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      security:
+        - basicAuth: []
 components:
   securitySchemes:
     basicAuth:
