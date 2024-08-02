@@ -4,6 +4,7 @@
 })*/
 
 // script.js
+"use client";
 document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menuToggle');
   const navList = document.getElementById('navList');

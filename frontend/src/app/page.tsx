@@ -1,5 +1,5 @@
-/*import Header from "../components/Header";*/
-/*
+/*import Header from "../components/Header";
+
 function Home() {
   return (
     <>
@@ -8,8 +8,7 @@ function Home() {
   );
 }
 export default Home;
-*/
-
+/*
 "use client";
 
 import { FC, useState } from "react";
@@ -36,3 +35,18 @@ function Header() {
   );
 }
 export default Header;
+*/
+// src/pages/index.js
+"use client";
+import Navbar from '../components/Navbar';
+
+export default function Home() {
+    return (
+        <div>
+            <Navbar />
+            <h1>ようこそ！</h1>
+            <p>このページにはハンバーガーメニューが含まれています。</p>
+        </div>
+    );
+}
+
