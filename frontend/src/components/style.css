@@ -1,92 +1,124 @@
-.header {
+/*body{
+  overflow-x: hidden;
+}
+.header-area{
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  height: 65px;
   padding: 0 20px;
-  background: #fff;
-}
-
-.logo {
-  font-size: 24px;
-}
-
-/* ここから下がハンバーガーメニューに関するCSS */
-  
-/* チェックボックスを非表示にする */
-.drawer_hidden {
-  display: none;
-}
-
-/* ハンバーガーアイコンの設置スペース */
-.drawer_open {
-  display: flex;
-  height: 60px;
-  width: 60px;
-  justify-content: center;
   align-items: center;
+}
+.hamburger{
+  width: 40px;
+  height: 25px;
   position: relative;
-  z-index: 100;/* 重なり順を一番上にする */
+}
+.hamburger span{
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: blue;
+  transition: .5s;
+}
+.hamburger span:first-of-type{
+  top: 0;
+}
+.hamburger span:nth-of-type(2){
+  top: 50%;
+}
+.hamburger span:last-of-type{
+  top: 100%;
+}
+.slide-menu{
+  background-color: rgba(0, 0, 0, .8);
+  position: fixed;
+  top: 65px;
+  width: 100%;
+  left: 0;
+  transform: translateX(100%);
+  transition: .5s;
+}
+.slide-menu li{
+  color: #fff;
+  line-height: 400%;
+  text-align: center;
+}
+.hamburger.active span:first-of-type{  top: 50%;
+  transform: rotate(405deg);
+}
+.hamburger.active span:nth-of-type(2){
+  opacity: 0;
+}
+.hamburger.active span:last-of-type{
+  top: 50%;
+  transform: rotate(-405deg);
+}
+.slide-menu.active{
+  transform: translateX(0);
+}*/
+
+/* styles.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  /*align-items: center;*/
+  align-items: flex-end; /* アイコンを右に配置 */
+
+  padding: 15px;
+  background-color: #333;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* アイコンを右に配置 */
   cursor: pointer;
 }
 
-/* ハンバーガーメニューのアイコン */
-.drawer_open span,
-.drawer_open span:before,
-.drawer_open span:after {
-  content: '';
-  display: block;
-  height: 3px;
+.bar {
   width: 25px;
-  border-radius: 3px;
-  background: #333;
-  transition: 0.5s;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
+  top: 60px;
+  right: 15px;
+  background-color: #333;
+  width: 200px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
 }
 
-/* 三本線の一番上の棒の位置調整 */
-.drawer_open span:before {
-  bottom: 8px;
+.nav-list li {
+  margin: 10px 0;
 }
 
-/* 三本線の一番下の棒の位置調整 */
-.drawer_open span:after {
-  top: 8px;
+.nav-list a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
 }
 
-/* アイコンがクリックされたら真ん中の線を透明にする */
-#drawer_input:checked ~ .drawer_open span {
-  background: rgba(255, 255, 255, 0);
+.nav-list a:hover {
+  background-color: #575757;
 }
 
-/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
-#drawer_input:checked ~ .drawer_open span::before {
-  bottom: 0;
-  transform: rotate(45deg);
-}
-
-#drawer_input:checked ~ .drawer_open span::after {
-  top: 0;
-  transform: rotate(-45deg);
-}
-  
-/* メニューのデザイン*/
-.nav_content {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 100%; /* メニューを画面の外に飛ばす */
-  z-index: 99;
-  background: #fff;
-  transition: .5s;
-}
-
-/* メニュー黒ポチを消す */
-.nav_list {
-  list-style: none;
-}
-
-/* アイコンがクリックされたらメニューを表示 */
-#drawer_input:checked ~ .nav_content {
-  left: 0;/* メニューを画面に入れる */
+.show-menu {
+  transform: translateX(0);
 }

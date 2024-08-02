@@ -1,0 +1,57 @@
+/* src/components/Navbar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #333;
+}
+
+.menuToggle {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  right: 15px;
+  background-color: #333;
+  width: 200px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navList li {
+  margin: 10px 0;
+}
+
+.navList a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+}
+
+.navList a:hover {
+  background-color: #575757;
+}
+
+.showMenu {
+  transform: translateX(0);
+}
