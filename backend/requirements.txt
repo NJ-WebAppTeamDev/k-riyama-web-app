@@ -1,6 +1,6 @@
 cryptography
 Flask
-Flask-Migrate
+Flask-Script
 Flask-RESTful
 Flask-SQLAlchemy
 mysql-connector-python
