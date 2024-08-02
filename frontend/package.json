@@ -12,7 +12,6 @@
   "dependencies": {
     "next": "14.2.4",
     "react": "^18",
-
     "react-dom": "^18"
   },
   "devDependencies": {
@@ -21,8 +20,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
-
-
+    "husky": "^9.1.4",
     "typescript": "^5"
   }
 }
