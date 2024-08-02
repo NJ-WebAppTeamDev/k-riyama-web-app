@@ -37,3 +37,17 @@ class BlogListResource(Resource):
         blog_list = list(map(blog_to_dict, blogs))
 
         return {"blogs": blog_list}, 200
+
+
+class BlogDetailResource(Resource):
+    def get(self, blog_id):
+        blog = Blog.query.options(
+            joinedload(Blog.images), joinedload(Blog.student_voices)
+        ).get(blog_id)
+
+        if blog is None:
+            return {"message": "Blog not found"}, 404
+
+        blog_dict = blog_to_dict(blog)
+
+        return blog_dict, 200
