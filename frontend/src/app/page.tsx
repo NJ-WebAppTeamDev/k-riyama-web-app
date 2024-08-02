@@ -1,4 +1,4 @@
-import style from "./page.module.scss";
+import style from "./page.module.css";
 import Image from "next/image";
 function Home() {
   return (
