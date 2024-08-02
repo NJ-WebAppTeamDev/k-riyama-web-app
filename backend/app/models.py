@@ -20,6 +20,8 @@ class Blog(db.Model):
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc),
     )
+    images = db.relationship("BlogImage", backref="blog_ref", lazy=True)
+    student_voices = db.relationship("StudentVoice", backref="blog_ref", lazy=True)
 
     def __repr__(self):
         return f"<Blog {self.place_name}>"
@@ -30,10 +32,7 @@ class BlogImage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"), nullable=False)
-    row = db.Column(db.Integer, nullable=False, unique=True)
     image_url = db.Column(db.String(255), nullable=False)
-
-    blog = db.relationship("Blog", backref=db.backref("images", lazy=True))
 
     def __repr__(self):
         return f"<BlogImage {self.image_url}>"
@@ -44,11 +43,8 @@ class StudentVoice(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"), nullable=False)
-    row = db.Column(db.Integer, nullable=False, unique=True)
     academic_year = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=False)
-
-    blog = db.relationship("Blog", backref=db.backref("voices", lazy=True))
 
     def __repr__(self):
         return f"<StudentVoice {self.academic_year}>"
