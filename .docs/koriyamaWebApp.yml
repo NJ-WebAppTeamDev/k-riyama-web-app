@@ -158,6 +158,18 @@ components:
       type: http
       scheme: basic
   schemas:
+    StudentVoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        academic_year:
+          type: string
+          example: "2024"
+        description:
+          type: string
+          example: "学生の声"
     Blog:
       type: object
       properties:
@@ -171,11 +183,17 @@ components:
           type: string
           example: "ブログタイトル"
         points:
-          type: string
-          example: "おすすめポイント"
+          type: array
+          items:
+            type: string
+            example: "おすすめポイント"
         more_description:
           type: string
           example: "もっと詳しく"
+        student_voices:
+          type: array
+          items:
+            $ref: '#/components/schemas/StudentVoice'
         address:
           type: string
           example: "住所"
