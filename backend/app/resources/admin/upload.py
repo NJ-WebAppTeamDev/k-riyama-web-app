@@ -24,10 +24,7 @@ class ImageFileUploadResource(Resource):
             path.parent.mkdir(exist_ok=True)
         file.save(path)
 
-        image = BlogImage(
-            blog_id = blog_id,
-            image_url = str(path)
-        )
+        image = BlogImage(blog_id=blog_id, image_url=str(path))
 
         db.session.add(image)
         db.session.commit()
