@@ -19,29 +19,29 @@ class Blog(db.Model):
     def __repr__(self):
         return f'<Blog {self.place_name}>'
 
-# class BlogImage(db.Model):
-#     __tablename__ = 'blog_images'
+class BlogImage(db.Model):
+    __tablename__ = 'blog_images'
     
-#     id = db.Column(db.Integer, primary_key=True)
-#     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'), nullable=False)
-#     row = db.Column(db.Integer, nullable=False, unique=True)
-#     image_url = db.Column(db.String(255), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'), nullable=False)
+    row = db.Column(db.Integer, nullable=False, unique=True)
+    image_url = db.Column(db.String(255), nullable=False)
     
-#     blog = db.relationship('Blog', backref=db.backref('images', lazy=True))
+    blog = db.relationship('Blog', backref=db.backref('images', lazy=True))
 
-#     def __repr__(self):
-#         return f'<BlogImage {self.image_url}>'
+    def __repr__(self):
+        return f'<BlogImage {self.image_url}>'
 
-# class StudentVoice(db.Model):
-#     __tablename__ = 'student_voices'
+class StudentVoice(db.Model):
+    __tablename__ = 'student_voices'
     
-#     id = db.Column(db.Integer, primary_key=True)
-#     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'), nullable=False)
-#     row = db.Column(db.Integer, nullable=False, unique=True)
-#     academic_year = db.Column(db.String(255), nullable=False)
-#     description = db.Column(db.Text, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'), nullable=False)
+    row = db.Column(db.Integer, nullable=False, unique=True)
+    academic_year = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     
-#     blog = db.relationship('Blog', backref=db.backref('voices', lazy=True))
+    blog = db.relationship('Blog', backref=db.backref('voices', lazy=True))
 
-#     def __repr__(self):
-#         return f'<StudentVoice {self.academic_year}>'
+    def __repr__(self):
+        return f'<StudentVoice {self.academic_year}>'
