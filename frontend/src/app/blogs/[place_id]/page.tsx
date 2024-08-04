@@ -1,7 +1,9 @@
 "use client";
+import style from "./page.module.scss";
 import { fetchBlog, fetchBlogs } from "@/components/function/fetchMethods";
 import { useEffect, useState } from "react";
-
+import Footer from "@/components/Footer";
+import Image from "next/image";
 interface Blog {
   id: number;
   nick_name: string;
@@ -40,37 +42,44 @@ function Home({ params }: { params: { place_id: string } }) {
 
   return (
     <div>
-      <h1>ブログ一覧</h1>
-
       {blog ? (
-        <div
-          key={blog.id}
-          style={{
-            border: "1px solid #ccc",
-            margin: "10px",
-            padding: "10px",
-          }}
-        >
-          <h2>{blog.nick_name}</h2>
-          <h3>{blog.place_name}</h3>
-          <p>{blog.more_description}</p>
-          <p>
-            <strong>住所:</strong> {blog.address}
-          </p>
-          <p>
-            <strong>ポイント:</strong>
-          </p>
-          <ul>
-            {blog.points.map((point, index) => (
-              <li key={index}>{point}</li>
-            ))}
-          </ul>
-          <p>
-            <strong>メタディスクリプション:</strong> {blog.meta_description}
-          </p>
-          <p>
-            <strong>キーワード:</strong> {blog.meta_keywords}
-          </p>
+        <div key={blog.id}>
+          <header>header</header>
+          <h2>{blog.place_name}</h2>
+          <Image
+            src="/mock/430x214.png"
+            alt=""
+            layout="responsive"
+            height={214}
+            width={430}
+          />
+          <div className={style.place_point}>
+            <h3>おすすめポイント</h3>
+            <p>
+              {blog.points.map((point, index) => {
+                return <p key={index}>〇{point}</p>;
+              })}
+            </p>
+          </div>
+          <div className={style.place_description}>
+            <h3>もっと詳しく</h3>
+            <p>{blog.more_description}</p>
+          </div>
+          <div className={style.place_review}>
+            <h3>学生の声</h3>
+          </div>
+          <div className={style.place_access}>
+            <h3>アクセス</h3>
+            <Image
+              src="/mock/430x238.png"
+              alt=""
+              layout="responsive"
+              height={238}
+              width={430}
+            />
+            <p>{blog.address}</p>
+          </div>
+          <Footer />
         </div>
       ) : (
         <p>ブログがありません。</p>
