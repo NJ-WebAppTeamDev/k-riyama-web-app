@@ -1,9 +1,12 @@
 "use client";
 import style from "./page.module.scss";
-import { fetchBlog, fetchBlogs } from "@/components/function/fetchMethods";
+import { fetchBlog } from "@/components/function/fetchMethods";
 import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import { Inter } from "next/font/google";
+const Inter_600 = Inter({ preload: false, weight: ["600"] });
+const Inter_400 = Inter({ preload: false, weight: ["400"] });
 interface Blog {
   id: number;
   nick_name: string;
@@ -23,6 +26,7 @@ function Home({ params }: { params: { place_id: string } }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    //ブログidをurlから取得し、指定IDのブログをフェッチ
     if (params.place_id && typeof params.place_id === "string") {
       fetchBlog(params.place_id)
         .then((data) => {
@@ -45,7 +49,7 @@ function Home({ params }: { params: { place_id: string } }) {
       {blog ? (
         <div key={blog.id}>
           <header>header</header>
-          <h2>{blog.place_name}</h2>
+          <h2 className={Inter_600.className}>{blog.place_name}</h2>
           <Image
             src="/mock/430x214.png"
             alt=""
@@ -55,7 +59,7 @@ function Home({ params }: { params: { place_id: string } }) {
           />
           <div className={style.place_inner}>
             <div className={style.place_point}>
-              <h3>おすすめポイント</h3>
+              <h3 className={Inter_400.className}>おすすめポイント</h3>
               <div className={style.place_point__points}>
                 {blog.points.map((point, index) => {
                   return <p key={index}>〇{point}</p>;
@@ -63,11 +67,11 @@ function Home({ params }: { params: { place_id: string } }) {
               </div>
             </div>
             <div className={style.place_description}>
-              <h3>もっと詳しく</h3>
+              <h3 className={Inter_400.className}>もっと詳しく</h3>
               <p>{blog.more_description}</p>
             </div>
             <div className={style.place_review}>
-              <h3>学生の声</h3>
+              <h3 className={Inter_400.className}>学生の声</h3>
               <div className={style.place_review__card}>
                 <h4>XXXX学科　学部1年</h4>
                 <p>
@@ -76,7 +80,7 @@ function Home({ params }: { params: { place_id: string } }) {
               </div>
             </div>
             <div className={style.place_access}>
-              <h3>アクセス</h3>
+              <h3 className={Inter_400.className}>アクセス</h3>
               <Image
                 src="/mock/430x238.png"
                 alt=""
