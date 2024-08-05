@@ -1,3 +1,5 @@
+$block_margin: 15%;
+$block_title_margin: 5% 0;
 .place {
   h1,
   h2,
@@ -15,14 +17,35 @@
 .place_inner {
   padding: 2rem 1rem 2rem 1rem;
 }
+.place_name {
+  padding: 5%;
+  font-size: 32px;
+}
 .place_point {
+  h3 {
+    margin: $block_title_margin;
+  }
   .place_point__points {
     padding: 10px;
     border: 2px solid #62e3ff;
     border-radius: 22px;
+    line-height: 35.2px;
+  }
+}
+.place_description {
+  margin-top: $block_margin;
+  h3 {
+    margin: $block_title_margin;
+  }
+  p {
+    line-height: 28.8px;
   }
 }
 .place_review {
+  margin-top: $block_margin;
+  h3 {
+    margin: $block_title_margin;
+  }
   .place_review__card {
     border: 1px solid;
     border-radius: 22px;
@@ -30,5 +53,17 @@
     h4 {
       margin-left: 20%;
     }
+    p {
+      line-height: 28.8px;
+    }
+  }
+}
+.place_access {
+  margin-top: $block_margin;
+  h3 {
+    margin: $block_title_margin;
+  }
+  p {
+    margin: $block_title_margin;
   }
 }

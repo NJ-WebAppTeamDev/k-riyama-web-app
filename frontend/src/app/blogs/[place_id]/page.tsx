@@ -49,7 +49,9 @@ function Home({ params }: { params: { place_id: string } }) {
       {blog ? (
         <div key={blog.id}>
           <header>header</header>
-          <h2 className={Inter_600.className}>{blog.place_name}</h2>
+          <h2 className={`${Inter_600.className} ${style.place_name}`}>
+            {blog.place_name}
+          </h2>
           <Image
             src="/mock/430x214.png"
             alt=""
