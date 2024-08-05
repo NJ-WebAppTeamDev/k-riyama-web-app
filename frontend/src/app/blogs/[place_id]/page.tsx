@@ -41,7 +41,7 @@ function Home({ params }: { params: { place_id: string } }) {
   }
 
   return (
-    <div>
+    <div className={style.place}>
       {blog ? (
         <div key={blog.id}>
           <header>header</header>
@@ -53,32 +53,41 @@ function Home({ params }: { params: { place_id: string } }) {
             height={214}
             width={430}
           />
-          <div className={style.place_point}>
-            <h3>おすすめポイント</h3>
-            <p>
-              {blog.points.map((point, index) => {
-                return <p key={index}>〇{point}</p>;
-              })}
-            </p>
+          <div className={style.place_inner}>
+            <div className={style.place_point}>
+              <h3>おすすめポイント</h3>
+              <div className={style.place_point__points}>
+                {blog.points.map((point, index) => {
+                  return <p key={index}>〇{point}</p>;
+                })}
+              </div>
+            </div>
+            <div className={style.place_description}>
+              <h3>もっと詳しく</h3>
+              <p>{blog.more_description}</p>
+            </div>
+            <div className={style.place_review}>
+              <h3>学生の声</h3>
+              <div className={style.place_review__card}>
+                <h4>XXXX学科　学部1年</h4>
+                <p>
+                  学生から見た施設のおすすめポイント学生から見た施設のおすすめポイント学生から見た施設のおすすめポイント
+                </p>
+              </div>
+            </div>
+            <div className={style.place_access}>
+              <h3>アクセス</h3>
+              <Image
+                src="/mock/430x238.png"
+                alt=""
+                layout="responsive"
+                height={238}
+                width={430}
+              />
+              <p>{blog.address}</p>
+            </div>
           </div>
-          <div className={style.place_description}>
-            <h3>もっと詳しく</h3>
-            <p>{blog.more_description}</p>
-          </div>
-          <div className={style.place_review}>
-            <h3>学生の声</h3>
-          </div>
-          <div className={style.place_access}>
-            <h3>アクセス</h3>
-            <Image
-              src="/mock/430x238.png"
-              alt=""
-              layout="responsive"
-              height={238}
-              width={430}
-            />
-            <p>{blog.address}</p>
-          </div>
+
           <Footer />
         </div>
       ) : (
