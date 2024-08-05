@@ -9,3 +9,5 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = "uploads"
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+    SECRET_KEY = os.getenv("SECRET_KEY", "secret")
+    WTF_CSRF_ENABLED = False
