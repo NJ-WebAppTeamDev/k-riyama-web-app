@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app import db
+from app import db, auth
 from app.models import BlogImage
 from flask_restful import Resource, request
 from flask import jsonify, make_response
@@ -8,6 +8,7 @@ from flask import jsonify, make_response
 
 class ImageFileUploadResource(Resource):
 
+    @auth.login_required
     def post(self):
         if "file" not in request.files:
             return make_response(jsonify({"error": "file is required."}))

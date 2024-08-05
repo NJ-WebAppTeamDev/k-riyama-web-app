@@ -3,10 +3,12 @@ from flask import request
 from .validate import AdminBlogDataForm
 import logging
 from app.models import Blog, StudentVoice
-from app import db
+from app import db, auth
 
 
 class AdminBlogListResource(Resource):
+
+    @auth.login_required
     def post(self):
         data = request.get_json()
         form = AdminBlogDataForm(data=data)

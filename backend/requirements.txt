@@ -1,6 +1,7 @@
 cryptography
 Flask
 Flask-Cors
+Flask-HTTPAuth
 Flask-Script
 Flask-RESTful
 Flask-SQLAlchemy
