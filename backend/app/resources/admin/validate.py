@@ -16,7 +16,7 @@ class AdminBlogDataForm(FlaskForm):
     nick_name = StringField("Nick Name", validators=[DataRequired()])
     place_name = StringField("Place Name", validators=[DataRequired()])
     # points = FieldList(StringField("Point", validators=[DataRequired()]), min_entries=1)
-    more_description = StringField("More Description", validators=[Optional()])
+    more_description = StringField("More Description", validators=[DataRequired()])
     # student_voices = FieldList(FormField(AdminBlogStudentVoiceForm), min_entries=1)
     address = StringField("Address", validators=[DataRequired()])
     meta_description = StringField("Meta Description", validators=[DataRequired()])
