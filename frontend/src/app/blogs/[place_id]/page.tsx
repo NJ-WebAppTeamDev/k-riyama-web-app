@@ -91,6 +91,9 @@ function Home({ params }: { params: { place_id: string } }) {
                 width={430}
               />
               <p>{blog.address}</p>
+              <div className={style.place_access__btnwrapper}>
+                <button>アクセス方法を表示</button>
+              </div>
             </div>
           </div>
 
