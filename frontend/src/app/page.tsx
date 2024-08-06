@@ -1,52 +1,24 @@
-/*import Header from "../components/Header";
-
-function Home() {
-  return (
-    <>
-      <Header />
-    </>
-  );
-}
-export default Home;
-/*
 "use client";
-
-import { FC, useState } from "react";
-import { ToggleButton } from "../components/ToggleButton";
-import { Navigation } from "../components/Navigation";
-import "../components/stylenav.module.css";
-import "../components/styletog.module.css";
-
-function Header() {
-  const [open, setOpen] = useState(false);
-  const toggleFunction = () => {
-    setOpen((prevState) => !prevState);
-  };
-
-  return (
-    <header className="header">
-      <ToggleButton
-        open={open}
-        controls="navigation"
-        label="メニューを開きます"
-        onClick={toggleFunction} />
-      <Navigation id="navigation" open={open} />
-    </header>
-  );
-}
-export default Header;
-*/
-// src/pages/index.js
-"use client";
-import Navbar from '../components/Navbar';
+import styles from '../components/buger.module.css';
 
 export default function Home() {
-    return (
-        <div>
-            <Navbar />
-            <h1>ようこそ！</h1>
-            <p>このページにはハンバーガーメニューが含まれています。</p>
+  return (
+      <header>
+        <div className={styles.hamburgerMenu}>
+          <input type="checkbox" id="menu-btn-check" className={styles.menuBtnCheck} />
+          <label htmlFor="menu-btn-check" className={styles.menuBtn}><span></span></label>
+          <div className={styles.menuContent}>
+            <ul>
+              <li><a href="#">ホーム</a></li>
+              <li><a href="#">使い方</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+              <li><a href='#'>ライセンス</a></li>
+            </ul>
+          </div>
         </div>
+        <div className = "App">
+          <img src="./frontend/src/app/images/icon.jpg" className="App-logo" alt="logo"/>
+        </div>
+      </header>
     );
-}
-
+  } 

@@ -1,0 +1,106 @@
+.hamburgerMenu {
+  /* ハンバーガーメニューのスタイル */
+}
+
+.menuBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  height: 60px;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  background-color: #ffffff;
+}
+
+.menuBtn span,
+.menuBtn span:before,
+.menuBtn span:after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background-color: #000000;
+  position: absolute;
+}
+
+.menuBtn span:before {
+  bottom: 8px;
+}
+
+.menuBtn span:after {
+  top: 8px;
+}
+
+.menuBtnCheck:checked ~ .menuBtn span {
+  background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+}
+
+.menuBtnCheck:checked ~ .menuBtn span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.menuBtnCheck:checked ~ .menuBtn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.menuBtnCheck {
+  display: none;
+}
+
+.menuContent {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%;/*leftの値を変更してメニューを画面外へ*/
+  z-index: 80;
+  background-color: #000000;
+  opacity: 0.8;
+  transition: all 0.5s;/*アニメーション設定*/
+}
+
+.menuContent ul {
+  padding: 70px 10px 0;
+}
+
+.menuContent ul li {
+  border-bottom: solid 1px #ffffff;
+  list-style: none;
+}
+
+.menuContent ul li a {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
+  position: relative;
+}
+
+.menuContent ul li a::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-top: solid 2px #ffffff;
+  border-right: solid 2px #ffffff;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 11px;
+  top: 16px;
+}
+
+.menuBtnCheck:checked ~ .menuContent {
+  left: 0;/*メニューを画面内へ*/
+}
+
+.App-logo {
+  width: 20%;
+}
