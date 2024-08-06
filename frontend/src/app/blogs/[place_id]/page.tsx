@@ -75,7 +75,15 @@ function Home({ params }: { params: { place_id: string } }) {
             <div className={style.place_review}>
               <h3 className={Inter_400.className}>学生の声</h3>
               <div className={style.place_review__card}>
-                <h4>XXXX学科　学部1年</h4>
+                <div className={style.place_review__studentinfo}>
+                  <Image
+                    src="/images/student_icon.png"
+                    alt=""
+                    width={69}
+                    height={69}
+                  />
+                  <h4>XXXX学科　学部1年</h4>
+                </div>
                 <p>
                   学生から見た施設のおすすめポイント学生から見た施設のおすすめポイント学生から見た施設のおすすめポイント
                 </p>
@@ -96,7 +104,7 @@ function Home({ params }: { params: { place_id: string } }) {
               </div>
             </div>
           </div>
-
+          <div>最初の画面に戻るコンポーネント</div>
           <Footer />
         </div>
       ) : (
