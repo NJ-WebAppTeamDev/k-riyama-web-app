@@ -1,13 +1,13 @@
 "use client";
 import styles from '../components/buger.module.css';
 import Image from 'next/image';
-import logo from "../app/images/icon.jpg";
+import logo from "../app/images/logo.jpeg";
 
 export default function Home() {
   return (
     <header className={styles.header}>
       <div className="App">
-        <Image src={logo} alt="Logo" width={90} height={90} />
+        <Image src={logo} alt="Logo" width={200} height={90} />
       </div>
       <div className={styles.hamburgerMenu}>
         <input type="checkbox" id="menu-btn-check" className={styles.menuBtnCheck} />
