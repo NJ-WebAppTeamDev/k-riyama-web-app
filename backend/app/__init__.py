@@ -8,11 +8,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 auth = HTTPBasicAuth()
 
+
 @auth.verify_password
 def verify_password(username, password):
-    if username == "admin" and check_password_hash(generate_password_hash("admin"), password):
+    if username == "admin" and check_password_hash(
+        generate_password_hash("admin"), password
+    ):
         return True
     return False
+
 
 def create_app():
     app = Flask(__name__)
