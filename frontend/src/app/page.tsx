@@ -1,6 +1,6 @@
-import Footer from "../components/Footer";
-import style from "./page.module.scss";
-import Image from "next/image";
+import Footer from '../components/Footer';
+import style from './page.module.scss';
+import Image from 'next/image';
 function Home() {
   return (
     <div className={style.home}>
@@ -17,9 +17,7 @@ function Home() {
               height={100}
               width={100}
             />
-            <p className={style.tutorial_description}>
-              地図上のQRコードを読み取ってパネルをゲット
-            </p>
+            <p className={style.tutorial_description}>地図上のQRコードを読み取ってパネルをゲット</p>
           </div>
           <div className={style.tutorial_item}>
             <Image
@@ -41,9 +39,7 @@ function Home() {
               height={100}
               width={100}
             />
-            <p className={style.tutorial_description}>
-              完成した絵をスタッフに見せて景品ゲット
-            </p>
+            <p className={style.tutorial_description}>完成した絵をスタッフに見せて景品ゲット</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 //型定義
 interface Blog {
   id: number;
@@ -17,21 +17,21 @@ interface BlogsResponse {
   blogs: Blog[];
 }
 //基本URL
-const baseUrl = "http://localhost:5000";
+const baseUrl = 'http://localhost:5000';
 // 全ブログ取得
 export const fetchBlogs = async (): Promise<BlogsResponse> => {
-  const res = await fetch(baseUrl + "/api/v1/blogs");
+  const res = await fetch(baseUrl + '/api/v1/blogs');
   if (!res.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error('Network response was not ok');
   }
   const data: BlogsResponse = await res.json();
   return data;
 };
 //指定のIDのブログを取得
 export const fetchBlog = async (blogID: string): Promise<Blog> => {
-  const res = await fetch(baseUrl + "/api/v1/blogs/" + blogID);
+  const res = await fetch(baseUrl + '/api/v1/blogs/' + blogID);
   if (!res.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error('Network response was not ok');
   }
   const data: Blog = await res.json();
   return data;

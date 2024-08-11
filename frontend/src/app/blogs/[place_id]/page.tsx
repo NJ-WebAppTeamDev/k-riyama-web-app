@@ -1,12 +1,12 @@
-"use client";
-import style from "./page.module.scss";
-import { fetchBlog } from "@/components/function/fetchMethods";
-import { useEffect, useState } from "react";
-import Footer from "@/components/Footer";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-const Inter_600 = Inter({ preload: false, weight: ["600"] });
-const Inter_400 = Inter({ preload: false, weight: ["400"] });
+'use client';
+import style from './page.module.scss';
+import { fetchBlog } from '@/components/function/fetchMethods';
+import { useEffect, useState } from 'react';
+import Footer from '@/components/Footer';
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+const Inter_600 = Inter({ preload: false, weight: ['600'] });
+const Inter_400 = Inter({ preload: false, weight: ['400'] });
 interface Blog {
   id: number;
   nick_name: string;
@@ -27,14 +27,14 @@ function Home({ params }: { params: { place_id: string } }) {
 
   useEffect(() => {
     //ブログidをurlから取得し、指定IDのブログをフェッチ
-    if (params.place_id && typeof params.place_id === "string") {
+    if (params.place_id && typeof params.place_id === 'string') {
       fetchBlog(params.place_id)
         .then((data) => {
           setBlog(data);
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Fetch error:", error);
+          console.error('Fetch error:', error);
           setLoading(false);
         });
     }
@@ -49,16 +49,8 @@ function Home({ params }: { params: { place_id: string } }) {
       {blog ? (
         <div key={blog.id}>
           <header>header</header>
-          <h2 className={`${Inter_600.className} ${style.place_name}`}>
-            {blog.place_name}
-          </h2>
-          <Image
-            src="/mock/430x214.png"
-            alt=""
-            layout="responsive"
-            height={214}
-            width={430}
-          />
+          <h2 className={`${Inter_600.className} ${style.place_name}`}>{blog.place_name}</h2>
+          <Image src="/mock/430x214.png" alt="" layout="responsive" height={214} width={430} />
           <div className={style.place_inner}>
             <div className={style.place_point}>
               <h3 className={Inter_400.className}>おすすめポイント</h3>
@@ -76,12 +68,7 @@ function Home({ params }: { params: { place_id: string } }) {
               <h3 className={Inter_400.className}>学生の声</h3>
               <div className={style.place_review__card}>
                 <div className={style.place_review__studentinfo}>
-                  <Image
-                    src="/images/student_icon.png"
-                    alt=""
-                    width={69}
-                    height={69}
-                  />
+                  <Image src="/images/student_icon.png" alt="" width={69} height={69} />
                   <h4>XXXX学科　学部1年</h4>
                 </div>
                 <p>
@@ -91,13 +78,7 @@ function Home({ params }: { params: { place_id: string } }) {
             </div>
             <div className={style.place_access}>
               <h3 className={Inter_400.className}>アクセス</h3>
-              <Image
-                src="/mock/430x238.png"
-                alt=""
-                layout="responsive"
-                height={238}
-                width={430}
-              />
+              <Image src="/mock/430x238.png" alt="" layout="responsive" height={238} width={430} />
               <p>{blog.address}</p>
               <div className={style.place_access__btnwrapper}>
                 <button>アクセス方法を表示</button>
