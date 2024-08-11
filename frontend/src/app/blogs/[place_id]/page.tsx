@@ -1,25 +1,14 @@
 'use client';
+
 import style from './page.module.scss';
 import { fetchBlog } from '@/components/function/fetchMethods';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
+
 const Inter_600 = Inter({ preload: false, weight: ['600'] });
 const Inter_400 = Inter({ preload: false, weight: ['400'] });
-interface Blog {
-  id: number;
-  nick_name: string;
-  place_name: string;
-  points: string[];
-  more_description: string;
-  address: string;
-  meta_description: string;
-  meta_og_description: string;
-  meta_keywords: string;
-  images: string[];
-  student_voices: string[];
-}
 
 function Home({ params }: { params: { place_id: string } }) {
   const [blog, setBlog] = useState<Blog | null>(null);
