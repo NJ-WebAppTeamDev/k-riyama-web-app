@@ -1,11 +1,11 @@
 'use client';
 
 import style from './page.module.scss';
-import { fetchBlog } from '@/components/function/fetchMethods';
 import { useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
+import { fetchBlog } from '@/utils/fetchMethods';
 
 const Inter_600 = Inter({ preload: false, weight: ['600'] });
 const Inter_400 = Inter({ preload: false, weight: ['400'] });
