@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
+    "check-types": "tsc --noEmit",
     "generate:api": "npx openapi-typescript ../.docs/koriyamaWebApp.yml --output ./src/const/openapi.d.ts;",
     "prepare": "cd .. && husky"
   },
