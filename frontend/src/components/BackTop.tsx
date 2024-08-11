@@ -5,7 +5,7 @@ function BackTop() {
   return (
     <div className={style.backtop}>
       <Link href="/" className={style.link}>
-        最初の画面に戻る
+        最初の画面へ戻る
       </Link>
     </div>
   );
