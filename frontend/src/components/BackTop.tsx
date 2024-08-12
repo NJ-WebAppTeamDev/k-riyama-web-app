@@ -1,4 +1,4 @@
-import style from "../components/BackTop.module.css";
+import style from '../components/BackTop.module.css';
 import Link from 'next/link';
 
 function BackTop() {
