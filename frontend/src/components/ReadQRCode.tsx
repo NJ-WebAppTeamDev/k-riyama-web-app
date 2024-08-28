@@ -5,9 +5,11 @@ import { useZxing } from 'react-zxing';
 function ReadQRCode({
   stampsList,
   setStampsList,
+  reloadComponent,
 }: {
   stampsList: string[];
   setStampsList: (arg0: string[]) => void;
+  reloadComponent: () => void;
 }) {
   const [result, setResult] = useState('');
   const [cameraStatus, setCameraStatus] = useState(false); //true でカメラを止める
@@ -18,7 +20,7 @@ function ReadQRCode({
       setResult(result.getText());
       console.log(result.getText());
       if (
-        result.getText() === 'https://x.com/home?lang=ja' ||
+        result.getText() === 'https://x.com/home' ||
         result.getText() === 'https://www.instagram.com/' ||
         result.getText() === 'https://www.youtube.com/'
       ) {
@@ -41,7 +43,11 @@ function ReadQRCode({
     alert('Add Stamp');
   };
   if (!isVisible) {
-    return <>invisible</>;
+    return (
+      <>
+        <button onClick={reloadComponent}>続けてQRコードを読み取る</button>
+      </>
+    );
   }
   return (
     <>

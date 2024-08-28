@@ -62,8 +62,12 @@ function Home() {
         </div>
       </div>
       <div className={style.stump}>
-        <ReadQRCode key={reloadKey} stampsList={stampsList} setStampsList={setStampsList} />
-        <button onClick={reloadComponent}>reload</button>
+        <ReadQRCode
+          key={reloadKey}
+          stampsList={stampsList}
+          setStampsList={setStampsList}
+          reloadComponent={reloadComponent}
+        />
         <h2>スタンプボード</h2>
         <ShowStampBoard stampsList={stampsList} />
       </div>
