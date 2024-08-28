@@ -11,6 +11,7 @@ function ReadQRCode({
 }) {
   const [result, setResult] = useState('');
   const [cameraStatus, setCameraStatus] = useState(false); //true でカメラを止める
+  const [isVisible, setIsVisible] = useState(true); //コンポーネント表示
   const { ref } = useZxing({
     paused: cameraStatus,
     onDecodeResult(result) {
@@ -23,6 +24,7 @@ function ReadQRCode({
       ) {
         addStamp(result.getText());
         setCameraStatus(true); //スタンプ保存後カメラをリセットさせる
+        setIsVisible(false);
       }
     },
   });
@@ -38,6 +40,9 @@ function ReadQRCode({
     localStorage.setItem('stamps', JSON.stringify(updatedStampsList));
     alert('Add Stamp');
   };
+  if (!isVisible) {
+    return <>invisible</>;
+  }
   return (
     <>
       <video
