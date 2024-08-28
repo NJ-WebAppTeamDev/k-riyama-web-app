@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useZxing } from 'react-zxing';
 
 function ReadQRCode({
@@ -10,8 +10,9 @@ function ReadQRCode({
   setStampsList: (arg0: string[]) => void;
 }) {
   const [result, setResult] = useState('');
-
+  const [cameraStatus, setCameraStatus] = useState(false); //true でカメラを止める
   const { ref } = useZxing({
+    paused: cameraStatus,
     onDecodeResult(result) {
       setResult(result.getText());
       console.log(result.getText());
@@ -21,6 +22,7 @@ function ReadQRCode({
         result.getText() === 'https://www.youtube.com/'
       ) {
         addStamp(result.getText());
+        setCameraStatus(true); //スタンプ保存後カメラをリセットさせる
       }
     },
   });
