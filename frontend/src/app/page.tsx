@@ -1,8 +1,20 @@
+'use client';
+import ReadQRCode from '@/components/ReadQRCode';
 import Footer from '../components/Footer';
 import style from './page.module.scss';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import ShowStampBoard from '@/components/ShowStampBoard';
 
 function Home() {
+  const [stampsList, setStampsList] = useState<string[]>([]);
+  /*ローカルストレージに保存されているスタンプを読み込み*/
+  useEffect(() => {
+    const storedStamps = localStorage.getItem('stamps');
+    if (storedStamps) {
+      setStampsList(JSON.parse(storedStamps));
+    }
+  }, []);
   return (
     <div className={style.home}>
       <header>header</header>
@@ -45,7 +57,9 @@ function Home() {
         </div>
       </div>
       <div className={style.stump}>
+        <ReadQRCode stampsList={stampsList} setStampsList={setStampsList} />
         <h2>スタンプボード</h2>
+        <ShowStampBoard stampsList={stampsList} />
       </div>
       <Footer />
     </div>
