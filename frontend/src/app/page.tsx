@@ -8,6 +8,11 @@ import ShowStampBoard from '@/components/ShowStampBoard';
 
 function Home() {
   const [stampsList, setStampsList] = useState<string[]>([]);
+  // /*カメラコンポーネントを再レンダリング*/
+  // const [reloadKey, setReloadKey] = useState(0);
+  // const reloadComponent = () => {
+  //   setReloadKey((reloadKey) => reloadKey + 1);
+  // };
   /*ローカルストレージに保存されているスタンプを読み込み*/
   useEffect(() => {
     const storedStamps = localStorage.getItem('stamps');
