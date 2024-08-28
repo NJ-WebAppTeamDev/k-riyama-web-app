@@ -8,11 +8,11 @@ import ShowStampBoard from '@/components/ShowStampBoard';
 
 function Home() {
   const [stampsList, setStampsList] = useState<string[]>([]);
-  // /*カメラコンポーネントを再レンダリング*/
-  // const [reloadKey, setReloadKey] = useState(0);
-  // const reloadComponent = () => {
-  //   setReloadKey((reloadKey) => reloadKey + 1);
-  // };
+  /*カメラコンポーネントを再レンダリング*/
+  const [reloadKey, setReloadKey] = useState(0);
+  const reloadComponent = () => {
+    setReloadKey((reloadKey) => reloadKey + 1);
+  };
   /*ローカルストレージに保存されているスタンプを読み込み*/
   useEffect(() => {
     const storedStamps = localStorage.getItem('stamps');
@@ -62,7 +62,8 @@ function Home() {
         </div>
       </div>
       <div className={style.stump}>
-        <ReadQRCode stampsList={stampsList} setStampsList={setStampsList} />
+        <ReadQRCode key={reloadKey} stampsList={stampsList} setStampsList={setStampsList} />
+        <button onClick={reloadComponent}>reload</button>
         <h2>スタンプボード</h2>
         <ShowStampBoard stampsList={stampsList} />
       </div>
