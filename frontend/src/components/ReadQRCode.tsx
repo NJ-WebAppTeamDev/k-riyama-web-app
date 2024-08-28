@@ -2,9 +2,15 @@
 import { useEffect, useState } from 'react';
 import { useZxing } from 'react-zxing';
 
-function ReadQRCode() {
+function ReadQRCode({
+  stampsList,
+  setStampsList,
+}: {
+  stampsList: string[];
+  setStampsList: (arg0: string[]) => void;
+}) {
   const [result, setResult] = useState('');
-  const [stampsList, setStampsList] = useState<string[]>([]);
+
   const { ref } = useZxing({
     onDecodeResult(result) {
       setResult(result.getText());
@@ -18,13 +24,7 @@ function ReadQRCode() {
       }
     },
   });
-  /*ローカルストレージに保存されているスタンプを読み込み*/
-  useEffect(() => {
-    const storedStamps = localStorage.getItem('stamps');
-    if (storedStamps) {
-      setStampsList(JSON.parse(storedStamps));
-    }
-  }, []);
+
   /*読み込んだスタンプをローカルストレージに保存 */
   const addStamp = (newStamp: string) => {
     if (stampsList.includes(newStamp)) {
@@ -38,7 +38,11 @@ function ReadQRCode() {
   };
   return (
     <>
-      <video ref={ref} />
+      <video
+        ref={ref}
+        style={{ width: '100%', maxWidth: '500px', height: 'auto', border: '1px solid #ccc' }}
+        playsInline
+      />
       <p>
         <span>Last result:</span>
         <span>{result}</span>
