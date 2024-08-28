@@ -10,12 +10,14 @@
     "prettier": "prettier --write .",
     "check-types": "tsc --noEmit",
     "generate:api": "npx openapi-typescript ../.docs/koriyamaWebApp.yml --output ./src/const/openapi.d.ts;",
-    "prepare": "cd .. && husky"
+    "prepare": "cd .. && husky",
+    "smp": "next dev --experimental-https -H 0.0.0.0 -p 3001"
   },
   "dependencies": {
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-zxing": "^2.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
