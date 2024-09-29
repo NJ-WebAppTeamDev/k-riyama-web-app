@@ -1,6 +1,7 @@
-'use client';
-import { useState } from 'react';
-import { useZxing } from 'react-zxing';
+"use client";
+import { useState } from "react";
+import { useZxing } from "react-zxing";
+import { useRouter } from "next/navigation";
 
 function ReadQRCode({
   stampsList,
@@ -11,7 +12,8 @@ function ReadQRCode({
   setStampsList: (arg0: string[]) => void;
   reloadComponent: () => void;
 }) {
-  const [result, setResult] = useState('');
+  const router = useRouter();
+  const [result, setResult] = useState("");
   const [cameraStatus, setCameraStatus] = useState(false); //true でカメラを止める
   const [isVisible, setIsVisible] = useState(true); //コンポーネント表示
   const { ref } = useZxing({
@@ -19,14 +21,24 @@ function ReadQRCode({
     onDecodeResult(result) {
       setResult(result.getText());
       console.log(result.getText());
-      if (
-        result.getText() === 'https://x.com/home' ||
-        result.getText() === 'https://www.instagram.com/' ||
-        result.getText() === 'https://www.youtube.com/'
-      ) {
+      const blog_id_list: string[] = [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+      ];
+      if (blog_id_list.includes(result.getText())) {
         addStamp(result.getText());
         setCameraStatus(true); //スタンプ保存後カメラをリセットさせる
         setIsVisible(false);
+
+        // QRコードに対応したブログページに遷移
+        router.push(`/blogs/${result.getText()}`);
       }
     },
   });
@@ -34,13 +46,13 @@ function ReadQRCode({
   /*読み込んだスタンプをローカルストレージに保存 */
   const addStamp = (newStamp: string) => {
     if (stampsList.includes(newStamp)) {
-      alert('すでに読み込んだQRコードです');
+      alert("すでに読み込んだQRコードです");
       return;
     }
     const updatedStampsList = [...stampsList, newStamp];
     setStampsList(updatedStampsList);
-    localStorage.setItem('stamps', JSON.stringify(updatedStampsList));
-    alert('Add Stamp');
+    localStorage.setItem("stamps", JSON.stringify(updatedStampsList));
+    alert("Add Stamp");
   };
   if (!isVisible) {
     return (
@@ -53,7 +65,12 @@ function ReadQRCode({
     <>
       <video
         ref={ref}
-        style={{ width: '100%', maxWidth: '500px', height: 'auto', border: '1px solid #ccc' }}
+        style={{
+          width: "100%",
+          maxWidth: "500px",
+          height: "auto",
+          border: "1px solid #ccc",
+        }}
         playsInline
       />
       <p>
