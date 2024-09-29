@@ -26,7 +26,6 @@ function ReadQRCode({
       setResult(result.getText());
       console.log(result.getText());
       const blog_id_list: string[] = [
-        "0",
         "1",
         "2",
         "3",
@@ -35,6 +34,7 @@ function ReadQRCode({
         "6",
         "7",
         "8",
+        "9",
       ];
       if (blog_id_list.includes(result.getText())) {
         addStamp(result.getText());
@@ -82,12 +82,6 @@ function ReadQRCode({
       >
         QRコードを読み取る
       </button>
-      {/*
-      <p>
-        <span>Last result:</span>
-        <span>{result}</span>
-      </p>
-      */}
     </>
   );
 }
