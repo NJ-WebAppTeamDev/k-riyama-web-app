@@ -1,0 +1,100 @@
+.header {
+  height: 113px; /* ヘッダーの高さ */
+}
+
+.menuBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  height: 65px; /* 高さを65pxに設定 */
+  width: 64px; /* 幅を64pxに設定 */
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  background-color: #ffffff;
+}
+
+.menuBtn span,
+.menuBtn span:before,
+.menuBtn span:after {
+  content: '';
+  display: block;
+  height: 4px; /* 線の高さを調整 */
+  width: 35px; /* 線の幅を調整 */
+  border-radius: 3px;
+  background-color: #000000;
+  position: absolute;
+}
+
+.menuBtn span:before {
+  bottom: 12px; /* 上下の間隔を調整 */
+}
+
+.menuBtn span:after {
+  top: 12px; /* 上下の間隔を調整 */
+}
+
+.menuBtnCheck:checked ~ .menuBtn span {
+  background-color: rgba(255, 255, 255, 0); /* メニューオープン時は真ん中の線を透明にする */
+}
+
+.menuBtnCheck:checked ~ .menuBtn span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.menuBtnCheck:checked ~ .menuBtn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.menuBtnCheck {
+  display: none;
+}
+
+.menuContent {
+  width: 100%;
+  height: calc(100% - 113px); /* ヘッダーの下から表示されるように */
+  position: fixed;
+  top: 113px; /* ヘッダーの高さ */
+  left: 100%; /* leftの値を変更してメニューを画面外へ */
+  z-index: 80;
+  background-color: #000000;
+  opacity: 0.8;
+  transition: all 0.5s; /* アニメーション設定 */
+}
+
+.menuContent ul {
+  padding: 0;
+  margin-top: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center; /* リストをセンターに持ってくる */
+}
+
+.menuContent ul li {
+  border-bottom: none; /* ボーダーを消す */
+  list-style: none;
+  margin: 10px 0;
+}
+
+.menuContent ul li a {
+  display: block;
+  width: 100%;
+  font-size: 32px; /* フォントサイズを32pxに設定 */
+  font-family: Inter; /* フォントファミリーをInterに設定 */
+  font-weight: 400; /* フォントウェイトを400に設定 */
+  line-height: 38.73px; /* 行間を38.73pxに設定 */
+  text-align: center; /* テキストを中央揃えに設定 */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
+  position: relative;
+}
+
+.menuBtnCheck:checked ~ .menuContent {
+  left: 0; /* メニューを画面内へ */
+}
