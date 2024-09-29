@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useZxing } from "react-zxing";
 import { useRouter } from "next/navigation";
+import style from "./ReadQRCode.module.scss";
 
 function ReadQRCode({
   stampsList,
@@ -14,8 +15,11 @@ function ReadQRCode({
 }) {
   const router = useRouter();
   const [result, setResult] = useState("");
-  const [cameraStatus, setCameraStatus] = useState(false); //true でカメラを止める
+  const [cameraStatus, setCameraStatus] = useState(true); //true でカメラを止める
   const [isVisible, setIsVisible] = useState(true); //コンポーネント表示
+  const [videoDisplayStatus, setVideoDisPlayStatus] = useState("none"); // カメラ映像を表示するvideo要素のdisplay属性
+  const [buttonDisplayStatus, setButttonDisPlayStatus] =
+    useState("inline-block"); // カメラを軌道するbutton要素のdisplay属性
   const { ref } = useZxing({
     paused: cameraStatus,
     onDecodeResult(result) {
@@ -54,29 +58,36 @@ function ReadQRCode({
     localStorage.setItem("stamps", JSON.stringify(updatedStampsList));
     alert("Add Stamp");
   };
-  if (!isVisible) {
-    return (
-      <>
-        <button onClick={reloadComponent}>続けてQRコードを読み取る</button>
-      </>
-    );
-  }
+
   return (
     <>
       <video
+        className={style.video}
         ref={ref}
         style={{
-          width: "100%",
-          maxWidth: "500px",
-          height: "auto",
-          border: "1px solid #ccc",
+          display: videoDisplayStatus,
         }}
         playsInline
       />
+      <button
+        className={style.camera_start_button}
+        style={{
+          display: buttonDisplayStatus,
+        }}
+        onClick={() => {
+          setCameraStatus(false);
+          setVideoDisPlayStatus("inline");
+          setButttonDisPlayStatus("none");
+        }}
+      >
+        QRコードを読み取る
+      </button>
+      {/*
       <p>
         <span>Last result:</span>
         <span>{result}</span>
       </p>
+      */}
     </>
   );
 }
