@@ -11,3 +11,8 @@ interface Blog {
   images: string[];
   student_voices: string[];
 }
+
+interface StampBoardItem {
+  id: number;
+  nick_name: string;
+}
