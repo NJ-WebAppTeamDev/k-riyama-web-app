@@ -1,10 +1,10 @@
-'use client';
-import ReadQRCode from '@/components/ReadQRCode';
-import Footer from '../components/Footer';
-import style from './page.module.scss';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import ShowStampBoard from '@/components/ShowStampBoard';
+"use client";
+import ReadQRCode from "@/components/ReadQRCode";
+import Footer from "../components/Footer";
+import style from "./page.module.scss";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import ShowStampBoard from "@/components/ShowStampBoard";
 
 function Home() {
   const [stampsList, setStampsList] = useState<string[]>([]);
@@ -15,7 +15,7 @@ function Home() {
   };
   /*ローカルストレージに保存されているスタンプを読み込み*/
   useEffect(() => {
-    const storedStamps = localStorage.getItem('stamps');
+    const storedStamps = localStorage.getItem("stamps");
     if (storedStamps) {
       setStampsList(JSON.parse(storedStamps));
     }
@@ -35,7 +35,9 @@ function Home() {
               height={100}
               width={100}
             />
-            <p className={style.tutorial_description}>地図上のQRコードを読み取ってパネルをゲット</p>
+            <p className={style.tutorial_description}>
+              地図上のQRコードを読み取ってパネルをゲット
+            </p>
           </div>
           <div className={style.tutorial_item}>
             <Image
@@ -57,17 +59,24 @@ function Home() {
               height={100}
               width={100}
             />
-            <p className={style.tutorial_description}>完成した絵をスタッフに見せて景品ゲット</p>
+            <p className={style.tutorial_description}>
+              完成した絵をスタッフに見せて景品ゲット
+            </p>
           </div>
         </div>
       </div>
-      <div className={style.stump}>
+
+      <div className={style.qr_reader}>
+        <h2>QRコードを読み取る</h2>
         <ReadQRCode
           key={reloadKey}
           stampsList={stampsList}
           setStampsList={setStampsList}
           reloadComponent={reloadComponent}
         />
+      </div>
+
+      <div className={style.stump}>
         <h2>スタンプボード</h2>
         <ShowStampBoard stampsList={stampsList} />
       </div>
