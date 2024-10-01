@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { fetchStampBoardItems } from '@/utils/fetchMethods';
 import style from './ShowStampBoard.module.scss';
