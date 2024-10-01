@@ -5,11 +5,15 @@ import style from './ShowStampBoard.module.scss';
 import Image from 'next/image';
 
 function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
-  const [stampBoardItems, setStampBoardItems] = useState<StampBoardItem[] | null>(null);
+  const [stampBoardItems, setStampBoardItems] = useState<StampBoardItem[] | null>(
+    null
+  ); /* スタンプボードに表示するあだ名とそのid */
   const [loading, setLoading] = useState(true);
-  const isUseAPI: boolean = false;
+  const isUseAPI: boolean = true; /* APIを使用するか */
+  /* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにスタンプボードを表示する場合は、isUseAPIをfalseにしてください */
 
   useEffect(() => {
+    /* APIからスタンプボードに表示する施設のあだ名とそのidを取得 */
     if (isUseAPI) {
       fetchStampBoardItems()
         .then((data) => {
@@ -21,6 +25,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
           setLoading(false);
         });
     } else {
+      /* APIを使わずにダミーデータを読み込む */
       const dummyStampBoardItems: StampBoardItem[] = [
         { id: 1, nick_name: 'キーワード1' },
         { id: 2, nick_name: 'キーワード2' },
@@ -32,7 +37,6 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
         { id: 8, nick_name: 'キーワード8' },
         { id: 9, nick_name: 'キーワード9' },
       ];
-      console.log('get data:', dummyStampBoardItems);
       setStampBoardItems(dummyStampBoardItems);
       setLoading(false);
     }
@@ -47,6 +51,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
       {stampBoardItems ? (
         <div className={style.stampboard}>
           {stampBoardItems.map((stampBoardItem) => {
+            /* あだ名のidがローカルストレージにある場合は、画像を表示 */
             if (stampsList.includes(String(stampBoardItem.id))) {
               return (
                 <div className={style.stampboard_panel} key={String(stampBoardItem.id)}>
@@ -61,6 +66,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
                 </div>
               );
             } else {
+              /* あだ名のidがローカルストレージにない場合は、あだ名を表示 */
               return (
                 <div className={style.stampboard_panel} key={String(stampBoardItem.id)}>
                   {stampBoardItem.nick_name}
