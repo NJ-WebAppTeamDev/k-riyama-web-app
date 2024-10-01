@@ -22,7 +22,7 @@ export const fetchBlog = async (blogID: string): Promise<Blog> => {
 };
 
 // ホーム画面のスタンプボードの内容を取得
-export const fetchStampBoardItems = async (): Promise<StampBoardItem[]> => {
+export const fetchStampBoardItems = async (): Promise<StampBoardItem[][]> => {
   const res = await fetch(baseUrl + '/api/v1/stampboard');
   if (!res.ok) {
     throw new Error('Network response was not ok');

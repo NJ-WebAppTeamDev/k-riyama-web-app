@@ -72,7 +72,7 @@ function Home() {
         />
       </div>
 
-      <div className={style.stump}>
+      <div className={style.stamp}>
         <h2>スタンプボード</h2>
         <ShowStampBoard stampsList={stampsList} />
       </div>
