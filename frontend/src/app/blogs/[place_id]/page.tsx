@@ -18,7 +18,7 @@ function Home({ params }: { params: { place_id: string } }) {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const isUseAPI: boolean = false; /* APIを使用するか */
+  const isUseAPI: boolean = true; /* APIを使用するか */
   /* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにブログを表示する場合は、isUseAPIをfalseにしてください */
 
   useEffect(() => {
