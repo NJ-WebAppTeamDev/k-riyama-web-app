@@ -9,10 +9,16 @@ interface Blog {
   meta_og_description: string;
   meta_keywords: string;
   images: string[];
-  student_voices: string[];
+  student_voices: StudentVoice[];
 }
 
 interface StampBoardItem {
   id: number;
   nick_name: string;
+}
+
+interface StudentVoice {
+  id: number;
+  academic_year: string;
+  description: string;
 }
