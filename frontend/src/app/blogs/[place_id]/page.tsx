@@ -10,6 +10,10 @@ import { Inter } from 'next/font/google';
 import { fetchBlog } from '@/utils/fetchMethods';
 import { dummyBlogs } from '@/const/dummyblogs';
 import BackTop from '@/components/BackTop';
+import SlideShow from '@/components/blogs/SlideShow';
+
+const isUseAPI: boolean = true; /* APIを使用するか */
+/* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにブログを表示する場合は、isUseAPIをfalseにしてください */
 
 const Inter_600 = Inter({ preload: false, weight: ['600'] });
 const Inter_400 = Inter({ preload: false, weight: ['400'] });
@@ -17,9 +21,6 @@ const Inter_400 = Inter({ preload: false, weight: ['400'] });
 function Home({ params }: { params: { place_id: string } }) {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const isUseAPI: boolean = true; /* APIを使用するか */
-  /* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにブログを表示する場合は、isUseAPIをfalseにしてください */
 
   useEffect(() => {
     //ブログidをurlから取得し、指定IDのブログをフェッチ
@@ -60,7 +61,7 @@ function Home({ params }: { params: { place_id: string } }) {
         <div key={blog.id}>
           <Header />
           <h2 className={`${Inter_600.className} ${style.place_name}`}>{blog.place_name}</h2>
-          <Image src="/mock/430x214.png" alt="" layout="responsive" height={214} width={430} />
+          <SlideShow imagePaths={blog.images} />
 
           <div className={style.place_inner}>
             <div className={style.place_point}>
