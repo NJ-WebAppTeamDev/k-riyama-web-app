@@ -1,0 +1,18 @@
+.place_review__cards {
+  .place_review__card {
+    border: 1px solid;
+    border-radius: 22px;
+    padding: 25px;
+    margin: 0 1rem;
+    .place_review__studentinfo {
+      display: flex;
+      align-items: center;
+      h4 {
+        margin-left: 10%;
+      }
+    }
+    p {
+      line-height: 28.8px;
+    }
+  }
+}
