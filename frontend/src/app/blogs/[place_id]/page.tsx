@@ -11,6 +11,7 @@ import { fetchBlog } from '@/utils/fetchMethods';
 import { dummyBlogs } from '@/const/dummyblogs';
 import BackTop from '@/components/BackTop';
 import SlideShow from '@/components/blogs/SlideShow';
+import { isUseAPIBlog } from '@/const/const';
 
 const Inter_600 = Inter({ preload: false, weight: ['600'] });
 const Inter_400 = Inter({ preload: false, weight: ['400'] });
@@ -25,12 +26,8 @@ function Home({ params }: { params: { place_id: string } }) {
         APIを使わずにブログを表示する場合は、
         frontendディレクトリ上で「cp .env.example .env」を実行し、
         .envファイルのNEXT_PUBLIC_IS_USE_API_BLOGを"True"から"False"にしてください */
-
       //ブログidをurlから取得し、指定IDのブログをフェッチ
-      if (
-        process.env.NEXT_PUBLIC_IS_USE_API_BLOG &&
-        process.env.NEXT_PUBLIC_IS_USE_API_BLOG.toLowerCase() == 'true'
-      ) {
+      if (isUseAPIBlog) {
         fetchBlog(params.place_id)
           .then((data) => {
             setBlog(data);

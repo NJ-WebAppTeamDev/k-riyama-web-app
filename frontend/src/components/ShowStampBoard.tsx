@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { fetchStampBoardItems } from '@/utils/fetchMethods';
 import style from './ShowStampBoard.module.scss';
 import Image from 'next/image';
+import { isUseAPIStamp } from '@/const/const';
 
 function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
   const [stampBoardItems, setStampBoardItems] = useState<StampBoardItem[] | null>(
@@ -17,10 +18,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
       .envファイルのNEXT_PUBLIC_IS_USE_API_STAMPを"True"から"False"にしてください */
 
     /* APIからスタンプボードに表示する施設のあだ名とそのidを取得 */
-    if (
-      process.env.NEXT_PUBLIC_IS_USE_API_STAMP &&
-      process.env.NEXT_PUBLIC_IS_USE_API_STAMP.toLowerCase() == 'true'
-    ) {
+    if (isUseAPIStamp) {
       fetchStampBoardItems()
         .then((data) => {
           setStampBoardItems(Object.values(data)[0]);
