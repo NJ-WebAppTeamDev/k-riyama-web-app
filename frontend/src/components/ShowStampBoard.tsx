@@ -9,12 +9,18 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
     null
   ); /* スタンプボードに表示するあだ名とそのid */
   const [loading, setLoading] = useState(true);
-  const isUseAPI: boolean = true; /* APIを使用するか */
-  /* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにスタンプボードを表示する場合は、isUseAPIをfalseにしてください */
 
   useEffect(() => {
+    /* 注意：APIサーバは通信料金がかかるため、現在停止中。
+      APIを使わずにスタンプボードを表示する場合は、
+      frontendディレクトリ上で「cp .env.example .env」を実行し、
+      .envファイルのNEXT_PUBLIC_IS_USE_API_STAMPを"True"から"False"にしてください */
+
     /* APIからスタンプボードに表示する施設のあだ名とそのidを取得 */
-    if (isUseAPI) {
+    if (
+      process.env.NEXT_PUBLIC_IS_USE_API_STAMP &&
+      process.env.NEXT_PUBLIC_IS_USE_API_STAMP.toLowerCase() == 'true'
+    ) {
       fetchStampBoardItems()
         .then((data) => {
           setStampBoardItems(Object.values(data)[0]);
