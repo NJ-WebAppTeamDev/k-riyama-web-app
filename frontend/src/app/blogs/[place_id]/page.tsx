@@ -4,6 +4,7 @@ import style from './page.module.scss';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import PlaceReviewCards from '@/components/PlaceReviewCards';
+import PlaceMap from '@/components/PlaceMap';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
@@ -86,7 +87,7 @@ function Home({ params }: { params: { place_id: string } }) {
 
             <div className={style.place_access}>
               <h3 className={Inter_400.className}>アクセス</h3>
-              <Image src="/mock/430x238.png" alt="" layout="responsive" height={238} width={430} />
+              <PlaceMap place_address={blog.address} />
               <p>{blog.address}</p>
               <div className={style.place_access__btnwrapper}>
                 <button>アクセス方法を表示</button>
