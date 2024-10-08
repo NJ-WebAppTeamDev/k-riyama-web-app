@@ -4,11 +4,17 @@
     border-radius: 22px;
     padding: 25px;
     margin: 0 1rem;
+
+     // 2つ以上の要素がある場合、間にスペースを取る
+    &:not(:last-child) {
+      margin-bottom: 2rem; // カード間のスペース
+    }
+
     .place_review__studentinfo {
       display: flex;
       align-items: center;
       h4 {
-        margin-left: 10%;
+        margin-left: 1%;
       }
     }
     p {
