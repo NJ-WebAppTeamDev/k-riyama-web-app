@@ -4,12 +4,15 @@ import style from './page.module.scss';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import PlaceReviewCards from '@/components/PlaceReviewCards';
+import PlaceMap from '@/components/PlaceMap';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import { fetchBlog } from '@/utils/fetchMethods';
 import { dummyBlogs } from '@/const/dummyblogs';
 import BackTop from '@/components/BackTop';
+import SlideShow from '@/components/blogs/SlideShow';
+import { isUseAPIBlog } from '@/const/const';
 
 const Inter_600 = Inter({ preload: false, weight: ['600'] });
 const Inter_400 = Inter({ preload: false, weight: ['400'] });
@@ -18,13 +21,14 @@ function Home({ params }: { params: { place_id: string } }) {
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const isUseAPI: boolean = true; /* APIを使用するか */
-  /* 注意：APIサーバは通信料金がかかるため、現在停止中。APIを使わずにブログを表示する場合は、isUseAPIをfalseにしてください */
-
   useEffect(() => {
-    //ブログidをurlから取得し、指定IDのブログをフェッチ
     if (params.place_id && typeof params.place_id === 'string') {
-      if (isUseAPI) {
+      /* 注意：APIサーバは通信料金がかかるため、現在停止中。
+        APIを使わずにブログを表示する場合は、
+        frontendディレクトリ上で「cp .env.example .env」を実行し、
+        .envファイルのNEXT_PUBLIC_IS_USE_API_BLOGを"True"から"False"にしてください */
+      //ブログidをurlから取得し、指定IDのブログをフェッチ
+      if (isUseAPIBlog) {
         fetchBlog(params.place_id)
           .then((data) => {
             setBlog(data);
@@ -60,7 +64,7 @@ function Home({ params }: { params: { place_id: string } }) {
         <div key={blog.id}>
           <Header />
           <h2 className={`${Inter_600.className} ${style.place_name}`}>{blog.place_name}</h2>
-          <Image src="/mock/430x214.png" alt="" layout="responsive" height={214} width={430} />
+          <SlideShow imagePaths={blog.images} />
 
           <div className={style.place_inner}>
             <div className={style.place_point}>
@@ -83,7 +87,7 @@ function Home({ params }: { params: { place_id: string } }) {
 
             <div className={style.place_access}>
               <h3 className={Inter_400.className}>アクセス</h3>
-              <Image src="/mock/430x238.png" alt="" layout="responsive" height={238} width={430} />
+              <PlaceMap place_address={blog.address} />
               <p>{blog.address}</p>
               <div className={style.place_access__btnwrapper}>
                 <button>アクセス方法を表示</button>
