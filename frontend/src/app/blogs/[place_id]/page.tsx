@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import PlaceReviewCards from '@/components/PlaceReviewCards';
 import PlaceMap from '@/components/PlaceMap';
+import HowAccessButton from '@/components/HowAccessButton';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
@@ -89,9 +90,7 @@ function Home({ params }: { params: { place_id: string } }) {
               <h3 className={Inter_400.className}>アクセス</h3>
               <PlaceMap place_address={blog.address} />
               <p>{blog.address}</p>
-              <div className={style.place_access__btnwrapper}>
-                <button>アクセス方法を表示</button>
-              </div>
+              <HowAccessButton mapaddress={blog.address} />
             </div>
           </div>
 
