@@ -30,7 +30,7 @@ export default function SlideShow(props: SlideShowProps) {
               alt={`Slide ${index}`}
               width={300}
               height={200}
-              style={{ width: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%' }}
             />
           </div>
         ))}
