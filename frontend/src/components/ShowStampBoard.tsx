@@ -60,7 +60,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
               return (
                 <div className={style.stampboard_panel} key={String(stampBoardItem.id)}>
                   <Image
-                    src={'/mock/dummy_stampboard_img_' + stampBoardItem.id + '_100x100.jpg'}
+                    src={'/images/stampboard_img_' + stampBoardItem.id + '.jpg'}
                     alt=""
                     layout="responsive"
                     height={100}
