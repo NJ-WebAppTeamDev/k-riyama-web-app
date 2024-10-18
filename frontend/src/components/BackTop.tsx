@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 function BackTop() {
   return (
-    <div className={style.backtop}>
+    <div>
       <Link href="/" className={style.link}>
-        最初の画面へ戻る
+        <div className={style.backtop}>最初の画面へ戻る</div>
       </Link>
     </div>
   );
