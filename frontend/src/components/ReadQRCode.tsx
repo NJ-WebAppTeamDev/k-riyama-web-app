@@ -45,7 +45,7 @@ function ReadQRCode({
     const updatedStampsList = [...stampsList, newStamp];
     setStampsList(updatedStampsList);
     localStorage.setItem('stamps', JSON.stringify(updatedStampsList));
-    alert('Add Stamp');
+    alert('パネルを獲得しました！');
   };
 
   return (
@@ -69,7 +69,7 @@ function ReadQRCode({
           setButttonDisPlayStatus('none');
         }}
       >
-        QRコードを読み取る
+        カメラを起動する
       </button>
     </>
   );
