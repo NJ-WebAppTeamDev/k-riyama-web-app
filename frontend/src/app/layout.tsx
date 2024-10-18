@@ -16,6 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <title>日大生 郡山まち歩きアプリ</title>
+      </head>
       <body className={`${inter.className} ${style.layout_body}`}>{children}</body>
     </html>
   );
