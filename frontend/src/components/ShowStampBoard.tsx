@@ -31,15 +31,42 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
     } else {
       /* APIを使わずにダミーデータを読み込む */
       const dummyStampBoardItems: StampBoardItem[] = [
-        { id: 1, nick_name: 'キーワード1' },
-        { id: 2, nick_name: 'キーワード2' },
-        { id: 3, nick_name: 'キーワード3' },
-        { id: 4, nick_name: 'キーワード4' },
-        { id: 5, nick_name: 'キーワード5' },
-        { id: 6, nick_name: 'キーワード6' },
-        { id: 7, nick_name: 'キーワード7' },
-        { id: 8, nick_name: 'キーワード8' },
-        { id: 9, nick_name: 'キーワード9' },
+        {
+          id: 1,
+          nick_name: '私たちの学び舎',
+        },
+        {
+          id: 2,
+          nick_name: '新幹線と星空',
+        },
+        {
+          id: 3,
+          nick_name: '日大の最寄り駅',
+        },
+        {
+          id: 4,
+          nick_name: '奥座敷',
+        },
+        {
+          id: 5,
+          nick_name: '街の歴史語る滝桜',
+        },
+        {
+          id: 6,
+          nick_name: '新装・憩いの場',
+        },
+        {
+          id: 7,
+          nick_name: '夢の国',
+        },
+        {
+          id: 8,
+          nick_name: 'ワクワク集う場所',
+        },
+        {
+          id: 9,
+          nick_name: '芸術と夜景',
+        },
       ];
       setStampBoardItems(dummyStampBoardItems);
       setLoading(false);
@@ -73,7 +100,7 @@ function ShowStampBoard({ stampsList }: { stampsList: string[] }) {
               /* あだ名のidがローカルストレージにない場合は、あだ名を表示 */
               return (
                 <div className={style.stampboard_panel} key={String(stampBoardItem.id)}>
-                  {stampBoardItem.nick_name}
+                  <p>{stampBoardItem.nick_name}</p>
                 </div>
               );
             }
